@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+configs=../dotfiles
+
+[ ! -d $configs ] && \
+git clone https://github.com/mthaithanh/configs.git $configs
+
+(cd $configs && stow *)

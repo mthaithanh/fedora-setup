@@ -1,0 +1,31 @@
+#!/usr/bin/env sh
+
+path=$HOME/.config/oh-my-zsh
+
+themes_path=$path/custom/themes
+
+plugins_path=$path/custom/plugins
+
+[ -f $HOME/.zshrc ] && \
+rm $HOME/.zshrc
+
+[ ! -d $path ] && \
+git clone https://github.com/ohmyzsh/ohmyzsh.git $path
+
+[ ! -d $themes_path/powerlevel10k ] && 
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $themes_path/powerlevel10k
+
+[ ! -d $plugins_path/zsh-autosuggestions ] && \
+git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions.git $plugins_path/zsh-autosuggestions
+
+[ ! -d $plugins_path/zsh-completions ] && \
+git clone --depth=1 https://github.com/zsh-users/zsh-completions.git $plugins_path/zsh-completions
+
+[ ! -d $plugins_path/zsh-syntax-highlighting ] && \
+git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git $plugins_path/zsh-syntax-highlighting
+
+tput setaf 11;
+echo "###############################################################"
+echo "# oh-my-zsh and plugins have been installed"
+echo "###############################################################"
+echo;tput sgr0

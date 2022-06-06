@@ -1,0 +1,86 @@
+#!/usr/bin/env sh
+
+install_package_list=(
+  alacritty
+  code
+  discord
+  fzf
+  neovim
+  steam
+  stow
+  tmux
+  zsh
+)
+
+uninstall_package_list=(
+
+)
+
+install_packages() {
+  if dnf list --installed $1 &> /dev/null; then
+    tput setaf 2
+    echo "###############################################################"
+    echo "# "$1" is already installed"
+    echo "###############################################################"
+    echo; tput sgr0
+  else
+    tput setaf 3
+    echo "###############################################################"
+    echo "# Installing " $1
+    echo "###############################################################"
+    echo; tput sgr0
+    sudo dnf install $1 --assumeyes 
+  fi
+}
+
+uninstall_packages() {
+  if dnf list --installed $1 &> /dev/null; then
+    tput setaf 3
+    echo "###############################################################"
+    echo "# Removing " $1
+    echo "###############################################################"
+    echo; tput sgr0
+    sudo dnf remove $1
+  else
+    tput setaf 2
+    echo "###############################################################"
+    echo "# "$1" is not installed"
+    echo "###############################################################"
+    echo; tput sgr0
+  fi
+}
+
+# RPM Fusion Repository 
+sudo dnf install https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+
+# MS repositories for vscode
+sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
+
+dnf check-update &> /dev/null
+
+tput setaf 2;
+echo "################################################################"
+echo "# Enable package repositories"
+echo "################################################################"
+echo;tput sgr0
+
+count=0
+
+for name in "${install_package_list[@]}" ; do
+  count=$[count+1]
+  tput setaf 3;echo "Installing package nr. "$count" "$name;tput sgr0;
+  install_packages $name
+done
+
+for name in "${uninstall_package_list[@]}" ; do
+  count=$[count+1]
+  tput setaf 3;echo "Remove package nr. "$count" "$name;tput sgr0;
+  uninstall_packages $name
+done
+
+tput setaf 2;
+echo "###############################################################"
+echo "# Packages have been installed"
+echo "###############################################################"
+echo;tput sgr0

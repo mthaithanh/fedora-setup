@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+./01-install-packages
+./02-install-zsh
+./03-install-dotfiles

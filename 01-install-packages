@@ -4,6 +4,7 @@ install_package_list=(
   alacritty
   code
   discord
+  exa
   fzf
   neovim
   steam

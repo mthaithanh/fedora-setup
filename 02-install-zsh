@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+chsh -s $(which zsh)
+
 path=$HOME/.config/oh-my-zsh
 
 themes_path=$path/custom/themes

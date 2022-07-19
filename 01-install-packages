@@ -57,8 +57,8 @@ sudo dnf install --assumeyes https://mirrors.rpmfusion.org/nonfree/fedora/rpmfus
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
 
-sudo dnf autoremove
-sudo dnf upgrade --assumeyes &> /dev/null
+sudo dnf autoremove --assumeyes
+sudo dnf upgrade --assumeyes 
 
 tput setaf 2;
 echo "################################################################"

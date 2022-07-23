@@ -3,6 +3,7 @@
 install_package_list=(
   alacritty
   code
+  chromium
   discord
   exa
   fzf

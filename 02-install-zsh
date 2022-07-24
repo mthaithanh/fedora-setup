@@ -1,6 +1,20 @@
 #!/usr/bin/env sh
 
-chsh -s $(which zsh)
+
+if [ $(which $SHELL) != '/usr/bin/zsh' ]; then
+    tput setaf 3;
+    echo "###############################################################"
+    echo "# Changing default shell to zsh"
+    echo "###############################################################"
+    echo;tput sgr0
+    chsh -s $(which zsh)
+else
+    tput setaf 2;
+    echo "###############################################################"
+    echo "# zsh is already default shell"
+    echo "###############################################################"
+    echo;tput sgr0
+fi
 
 path=$HOME/.config/oh-my-zsh
 

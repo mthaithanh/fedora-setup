@@ -1,5 +1,8 @@
 #!/usr/bin/env sh
 
+uninstall_package_list=(
+)
+
 install_package_list=(
   alacritty
   code
@@ -14,10 +17,6 @@ install_package_list=(
   tmux
   util-linux-user
   zsh
-)
-
-uninstall_package_list=(
-
 )
 
 install_packages() {
@@ -72,16 +71,16 @@ echo;tput sgr0
 
 count=0
 
-for name in "${install_package_list[@]}" ; do
-  count=$[count+1]
-  tput setaf 3;echo "Installing package nr. "$count" "$name;tput sgr0;
-  install_packages $name
-done
-
 for name in "${uninstall_package_list[@]}" ; do
   count=$[count+1]
   tput setaf 3;echo "Remove package nr. "$count" "$name;tput sgr0;
   uninstall_packages $name
+done
+
+for name in "${install_package_list[@]}" ; do
+  count=$[count+1]
+  tput setaf 3;echo "Installing package nr. "$count" "$name;tput sgr0;
+  install_packages $name
 done
 
 tput setaf 2;

@@ -11,6 +11,7 @@ install_package_list=(
   steam
   stow
   tmux
+  util-linux-user
   zsh
 )
 

@@ -3,6 +3,6 @@
 configs=../configs
 
 [ ! -d $configs ] && \
-git clone https://github.com/mthaithanh/configs.git $configs
+git clone --depth 1 https://github.com/mthaithanh/configs.git $configs
 
 (cd $configs && make)
